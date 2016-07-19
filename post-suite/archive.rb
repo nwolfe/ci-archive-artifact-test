@@ -12,10 +12,8 @@ step 'Archive files created during tests' do
   scp_from(master, source, targetdir)
 
   ## Copy file(s) from agent
-  sourcedir = '/tmp/mytest'
-  source = "#{sourcedir}/agent.txt"
-  targetdir = "#{archivedir}/#{agent}#{sourcedir}"
-
+  source = '/tmp/mytest/agent.txt'
+  targetdir = "#{archivedir}/#{agent}/tmp/mytest"
   FileUtils.mkdir_p(targetdir)
   scp_from(agent, source, targetdir)
 end
