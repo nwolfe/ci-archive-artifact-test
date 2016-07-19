@@ -4,10 +4,8 @@ step 'Archive files created during tests' do
   archivedir = 'archive/sut-files'
 
   ## Copy file(s) from master
-  sourcedir = '/tmp/mytest'
-  source = "#{sourcedir}/master.txt"
-  targetdir = "#{archivedir}/#{master}#{sourcedir}"
-
+  source = '/tmp/mytest/master.txt'
+  targetdir = "#{archivedir}/#{master}/tmp/mytest"
   FileUtils.mkdir_p(targetdir)
   scp_from(master, source, targetdir)
 
