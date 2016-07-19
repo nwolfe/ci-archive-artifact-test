@@ -1,9 +1,15 @@
-step 'Archive files created during tests' do
-  source = '/tmp/mytest-master.txt'
-  target = "archive/sut-files/#{master}/#{source}"
-  scp_from(master, source, target)
+require 'fileutils'
 
-  source = '/tmp/mytest-agent.txt'
-  target = "archive/sut-files/#{agent}/#{source}"
-  scp_from(agent, source, target)
+step 'Archive files created during tests' do
+  archivedir = 'archive/sut-files'
+
+  source = "/tmp/mytest/master.txt"
+  targetdir = "#{archivedir}/#{master}"
+  FileUtils.mkdir_p(targetdir)
+  scp_from(master, source, targetdir)
+
+  source = '/tmp/mytest/agent.txt'
+  targetdir = "#{archivedir}/#{agent}"
+  FileUtils.mkdir_p(targetdir)
+  scp_from(agent, source, targetdir)
 end
