@@ -1,17 +1,18 @@
 require 'fileutils'
 
-step 'Archive files created during tests' do
-  archivedir = 'archive/sut-files'
-
-  ## Copy file(s) from master
-  source = '/tmp/mytest/master.txt'
-  targetdir = "#{archivedir}/#{master}/tmp/mytest"
+def archive_file(host, filepath)
+  # Value hardcoded in ci-job-configs too
+  archiveroot = 'archive/sut-files'
+  filedir = File.dirname(filepath)
+  targetdir = "#{archiveroot}/#{host}#{filedir}"
   FileUtils.mkdir_p(targetdir)
-  scp_from(master, source, targetdir)
+  scp_from(host, filepath, targetdir)
+end
+
+step 'Archive files created during tests' do
+  ## Copy file(s) from master
+  archive_file(master, '/tmp/mytest/master.txt')
 
   ## Copy file(s) from agent
-  source = '/tmp/mytest/agent.txt'
-  targetdir = "#{archivedir}/#{agent}/tmp/mytest"
-  FileUtils.mkdir_p(targetdir)
-  scp_from(agent, source, targetdir)
+  archive_file(agent, '/tmp/mytest/agent.txt')
 end
