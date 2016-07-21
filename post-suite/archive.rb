@@ -2,7 +2,7 @@ require 'fileutils'
 
 def archive_file_from(host, from_path, opts = {}, archive_root = 'archive/sut-files')
   filedir = File.dirname(from_path)
-  targetdir = File.join(archive_root, "#{host}#{filedir}")
+  targetdir = File.join(archive_root, host, filedir)
   FileUtils.mkdir_p(targetdir)
   scp_from(host, from_path, targetdir, opts)
 end
