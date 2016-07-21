@@ -9,7 +9,7 @@ end
 
 step 'Archive files created during tests' do
   ## Copy file(s) from master
-  archive_file_from(master, '/tmp/mytest/*')
+  archive_file_from(master, '/tmp/mytest/**', {:accept_all_exit_codes => true})
   archive_file_from(master, '/etc/file-on-master.log')
 
   ## Copy file(s) from agent
