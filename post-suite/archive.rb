@@ -12,8 +12,8 @@ step 'Archive files created during tests' do
   archive_file_from(master, '/etc/file-on-master.log')
 
   ## Copy file(s) from agent
-  archive_file_from(agent, '/tmp/mytest/agent.txt')
-  archive_file_from(agent, '/opt/file-on-agent.log')
-  archive_file_from(agent, '/foo.bar')
-  archive_file_from(agent, 'bar')
+  archive_file_from(other, '/tmp/mytest/agent.txt')
+  archive_file_from(other, '/opt/file-on-agent.log')
+  archive_file_from(other, '/foo.bar')
+  archive_file_from(other, 'bar')
 end
