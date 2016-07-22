@@ -9,11 +9,10 @@ end
 
 step 'Archive files created during tests' do
   ## Copy file(s) from master
-  archive_file_from(master, '/etc/file-on-master.log')
+  archive_file_from(master, '/var/log/puppetlabs/puppetserver/puppetserver.log')
+  archive_file_from(master, '/var/log/messages')
 
   ## Copy file(s) from agent
-  archive_file_from(other, '/tmp/mytest/agent.txt')
-  archive_file_from(other, '/opt/file-on-agent.log')
-  archive_file_from(other, '/foo.bar')
-  archive_file_from(other, 'bar')
+  archive_file_from(other, '/opt/file-on-agent')
+  archive_file_from(other, 'foo.bar')
 end
